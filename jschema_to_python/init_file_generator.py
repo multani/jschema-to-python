@@ -15,7 +15,7 @@ class InitFileGenerator(PythonFileGenerator):
 
     def generate(self):
         file_path = self.make_output_file_path("__init__.py")
-        with open(file_path, "w") as sys.stdout:
+        with open(file_path, "w") as self.fp:
             self.write_generation_comment()
             self._write_import_statements()
 
@@ -31,9 +31,8 @@ class InitFileGenerator(PythonFileGenerator):
 
     def _write_import_statement(self, class_name):
         class_module_name = util.class_name_to_private_module_name(class_name)
-        print(
+        self.write(
             "from "
-            + self.module_name
             + "."
             + class_module_name
             + " import "

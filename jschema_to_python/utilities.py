@@ -2,7 +2,7 @@ import os
 import shutil
 import sys
 
-import jsonpickle
+import json
 
 
 def capitalize_first_letter(identifier):
@@ -43,8 +43,7 @@ def class_name_to_private_module_name(class_name):
 
 def unpickle_file(path):
     with open(path, mode="rt") as file_obj:
-        contents = file_obj.read()
-        return jsonpickle.decode(contents)
+        return json.load(file_obj)
 
 
 def exit_with_error(message, *args):
